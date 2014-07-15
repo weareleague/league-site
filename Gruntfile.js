@@ -22,18 +22,12 @@ module.exports = function(grunt) {
         sass: {
             dist: {
                 options: {
-                    style: 'compressed'
+                    style: 'compressed',
+                    noCache: 'true'
                 },
                 files: {
-                    'build/_css/global.css': 'source/_css/global.scss'
+                    'build/_css/global.min.css': 'source/_css/global.scss'
                 }
-            }
-        },
-
-        // Pre-process the images
-        imageoptim: {
-            build: {
-                src: 'build/_img/'
             }
         },
 
@@ -43,9 +37,9 @@ module.exports = function(grunt) {
                 files: ['source/_js/*.js'],
                 tasks: ['concat', 'uglify']
             },
-            img: {
-                files: ['source/_img/**/*.{png,jpg,gif}'],
-                tasks: ['imageoptim']
+            copy: {
+                files: ['source/*.php'],
+                tasks: ['copy:php']
             },
             sass: {
                 files: ['source/_css/*.scss'],
@@ -53,6 +47,30 @@ module.exports = function(grunt) {
             },
             options: {
                 livereload: true
+            }
+        },
+
+        // Move over images & PHP
+        copy: {
+            images: {
+                expand: 'true',
+                cwd: 'source/_img/',
+                src: '**',
+                dest: 'build/_img/'
+            },
+            php: {
+                expand: 'true',
+                cwd: 'source/',
+                src: '*.php',
+                dest: 'build/',
+                filter: 'isFile'
+            }
+        },
+
+        // Pre-process the images
+        imageoptim: {
+            build: {
+                src: 'source/_img/**/*'
             }
         }
 
@@ -63,9 +81,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-imageoptim');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-newer');
 
     // Register task(s)
-    grunt.registerTask('default', ['concat', 'uglify', 'sass', 'imageoptim', 'watch']);
+    grunt.registerTask('default', ['concat', 'uglify', 'sass', 'copy:php', 'watch']);
+    grunt.registerTask('images', ['newer:copy:images', 'newer:imageoptim']);
 
 };
