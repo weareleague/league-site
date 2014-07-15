@@ -39,7 +39,7 @@
     </head>
     <body>
 
-        <p>This is a test no?</p>
+        <p>Basic test on the git email</p>
 
     </body>
 </html>
