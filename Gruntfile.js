@@ -70,7 +70,18 @@ module.exports = function(grunt) {
         // Pre-process the images
         imageoptim: {
             build: {
-                src: 'source/_img/**/*'
+                src: 'build/_img/**/*.{png,jpg,gif}'
+            }
+        },
+
+        svgmin: {
+            build: {
+                files: [{
+                expand: true,
+                cwd: 'source/_img/',
+                src: ['**/*.svg'],
+                dest: 'build/_img/'
+            }]
             }
         }
 
@@ -84,9 +95,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-newer');
+    grunt.loadNpmTasks('grunt-svgmin');
 
     // Register task(s)
     grunt.registerTask('default', ['concat', 'uglify', 'sass', 'copy:php', 'watch']);
-    grunt.registerTask('images', ['newer:copy:images', 'newer:imageoptim']);
+    grunt.registerTask('images', ['newer:copy:images', 'newer:imageoptim', 'svgmin']);
 
 };

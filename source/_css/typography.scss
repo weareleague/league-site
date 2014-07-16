@@ -1,0 +1,54 @@
+p {
+    line-height: 1.65em;
+    opacity: 0.8;
+}
+
+.first {
+    font-size: 1.5em;
+    line-height: 1.5em;
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: -0.75em;
+        left: 0;
+        background: $primarylight;
+        width: 2.3em;
+        height: 0.2em;
+    }
+}
+
+a {
+    font-family: 'Whitney SSm A', 'Whitney SSm B', sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    display: inline-block;
+    color: $primarylight;
+    text-decoration: none;
+    margin-top: 2em;
+    padding-top: 0.15em;
+    line-height: 1.5em;
+    border-bottom: 2px solid $primarylight;
+
+    &:hover, &:focus, &:active {
+        background: $primarylighttone;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    p, a {
+        font-size: 1.05em;
+    }
+    .first {
+        font-size: 1.65em;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    p, a {
+        font-size: 1.1em;
+    }
+    .first {
+        font-size: 1.8em;
+    }
+}

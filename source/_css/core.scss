@@ -1,0 +1,46 @@
+/* Browser selection */
+::selection {
+    background: $selection;
+}
+::-moz-selection {
+    background: $selection;
+}
+
+/* Border box-sizing */
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body */
+body {
+    background-color: $grey;
+    color: $greydark;
+    font-family: 'Mercury SSm A', 'Mercury SSm B', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1em;
+}
+
+section {
+    width: 100%;
+    max-width: 80em;
+    margin: 0 auto;
+    padding: 5%;
+    margin-bottom: 2em;
+}
+
+p {
+    width: 95%;
+    margin-bottom: 1em;
+    max-width: 28em;
+}
+
+.first {
+    width: 90%;
+    max-width: 22.5em;
+    position: relative;
+}
