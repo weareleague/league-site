@@ -54,5 +54,7 @@
 
         </section>
 
+        <script async src="_js/core.min.js"></script>
+
     </body>
 </html>
